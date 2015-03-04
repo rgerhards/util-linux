@@ -89,6 +89,7 @@ enum {
 	OPT_JOURNALD,
 	OPT_RFC3164,
 	OPT_RFC5424,
+	OPT_FMTLOCAL,
 	OPT_SOCKET_ERRORS
 };
 
@@ -622,6 +623,7 @@ int main(int argc, char **argv)
 		{ "prio-prefix", no_argument, 0, OPT_PRIO_PREFIX },
 		{ "rfc3164",	no_argument,  0, OPT_RFC3164 },
 		{ "rfc5424",	optional_argument,  0, OPT_RFC5424 },
+		{ "fmt-local",	no_argument,  0, OPT_FMTLOCAL },
 #ifdef HAVE_LIBSYSTEMD
 		{ "journald",   optional_argument,  0, OPT_JOURNALD },
 #endif
@@ -690,6 +692,9 @@ int main(int argc, char **argv)
 			ctl.syslogfp = syslog_rfc5424;
 			if (optarg)
 				parse_rfc5424_flags(&ctl, optarg);
+			break;
+		case OPT_FMTLOCAL:
+			ctl.syslogfp = syslog_local;
 			break;
 #ifdef HAVE_LIBSYSTEMD
 		case OPT_JOURNALD:
