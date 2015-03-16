@@ -890,7 +890,8 @@ int fdisk_ask_print_set_mesg(struct fdisk_ask *ask, const char *mesg)
 	return 0;
 }
 
-static int do_vprint(struct fdisk_context *cxt, int errnum, int type,
+static int __attribute__((format (printf, 4, 0)))
+do_vprint(struct fdisk_context *cxt, int errnum, int type,
 		     const char *fmt, va_list va)
 {
 	struct fdisk_ask *ask;
@@ -929,7 +930,7 @@ static int do_vprint(struct fdisk_context *cxt, int errnum, int type,
  *
  * Returns: 0 on success, <0 on error
  */
-int fdisk_info(struct fdisk_context *cxt, const char *fmt, ...)
+int __attribute__((format (printf, 2, 3))) fdisk_info(struct fdisk_context *cxt, const char *fmt, ...)
 {
 	int rc;
 	va_list ap;
@@ -951,7 +952,7 @@ int fdisk_info(struct fdisk_context *cxt, const char *fmt, ...)
  *
  * Returns: 0 on success, <0 on error
  */
-int fdisk_warn(struct fdisk_context *cxt, const char *fmt, ...)
+int __attribute__((format (printf, 2, 3))) fdisk_warn(struct fdisk_context *cxt, const char *fmt, ...)
 {
 	int rc;
 	va_list ap;
@@ -973,7 +974,7 @@ int fdisk_warn(struct fdisk_context *cxt, const char *fmt, ...)
  *
  * Returns: 0 on success, <0 on error
  */
-int fdisk_warnx(struct fdisk_context *cxt, const char *fmt, ...)
+int __attribute__((format (printf, 2, 3))) fdisk_warnx(struct fdisk_context *cxt, const char *fmt, ...)
 {
 	int rc;
 	va_list ap;

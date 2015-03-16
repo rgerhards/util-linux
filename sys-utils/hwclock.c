@@ -1553,7 +1553,7 @@ static void out_version(void)
  * fmt, ... ), show a usage information and terminate the program
  * afterwards.
  */
-static void usage(const char *fmt, ...)
+static __attribute__((format (printf, 1, 2))) void usage(const char *fmt, ...)
 {
 	FILE *usageto;
 	va_list ap;

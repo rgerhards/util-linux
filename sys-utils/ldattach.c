@@ -129,7 +129,7 @@ static const struct ld_table ld_iflags[] =
 	{ NULL,		0 }
 };
 
-static void dbg(char *fmt, ...)
+static __attribute__((format (printf, 1, 2))) void dbg(char *fmt, ...)
 {
 	va_list args;
 

@@ -100,14 +100,15 @@ struct eject_control {
 	long int x_arg;			/* cd speed */
 };
 
-static void vinfo(const char *fmt, va_list va)
+static __attribute__((format (printf, 1, 0))) void vinfo(const char *fmt, va_list va)
 {
 	fprintf(stdout, "%s: ", program_invocation_short_name);
 	vprintf(fmt, va);
 	fputc('\n', stdout);
 }
 
-static inline void verbose(const struct eject_control *ctl, const char *fmt, ...)
+static inline __attribute__((format (printf, 2, 3))) void
+verbose(const struct eject_control *ctl, const char *fmt, ...)
 {
 	va_list va;
 
@@ -119,7 +120,7 @@ static inline void verbose(const struct eject_control *ctl, const char *fmt, ...
 	va_end(va);
 }
 
-static inline void info(const char *fmt, ...)
+static inline __attribute__((format (printf, 1, 2))) void info(const char *fmt, ...)
 {
 	va_list va;
 	va_start(va, fmt);

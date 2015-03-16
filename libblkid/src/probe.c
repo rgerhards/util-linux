@@ -1389,7 +1389,8 @@ int blkid_probe_set_value(blkid_probe pr, const char *name,
 	return blkid_probe_value_set_data(v, data, len);
 }
 
-int blkid_probe_vsprintf_value(blkid_probe pr, const char *name,
+int __attribute__((format (printf, 3, 0)))
+blkid_probe_vsprintf_value(blkid_probe pr, const char *name,
 		const char *fmt, va_list ap)
 {
 	struct blkid_prval *v;

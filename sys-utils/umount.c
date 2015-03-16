@@ -153,7 +153,7 @@ static void success_message(struct libmnt_context *cxt)
  *
  * Returns exit status (MOUNT_EX_*) and prints error message.
  */
-static int handle_generic_errors(int rc, const char *msg, ...)
+static int __attribute__((format (printf, 2, 3))) handle_generic_errors(int rc, const char *msg, ...)
 {
 	va_list va;
 

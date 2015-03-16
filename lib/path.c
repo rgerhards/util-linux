@@ -35,7 +35,7 @@
 static size_t prefixlen;
 static char pathbuf[PATH_MAX];
 
-static const char *
+static const char * __attribute__((format (printf, 1, 0)))
 path_vcreate(const char *path, va_list ap)
 {
 	if (prefixlen)
@@ -59,7 +59,7 @@ path_strdup(const char *path, ...)
 	return p ? strdup(p) : NULL;
 }
 
-static FILE *
+static FILE * __attribute__((format (printf, 3, 0)))
 path_vfopen(const char *mode, int exit_on_error, const char *path, va_list ap)
 {
 	FILE *f;
@@ -71,7 +71,7 @@ path_vfopen(const char *mode, int exit_on_error, const char *path, va_list ap)
 	return f;
 }
 
-static int
+static int __attribute__((format (printf, 2, 0)))
 path_vopen(int flags, const char *path, va_list ap)
 {
 	int fd;
@@ -186,7 +186,7 @@ path_exist(const char *path, ...)
 
 #ifdef HAVE_CPU_SET_T
 
-static cpu_set_t *
+static cpu_set_t * __attribute__((format (printf, 3, 0)))
 path_cpuparse(int maxcpus, int islist, const char *path, va_list ap)
 {
 	FILE *fd;

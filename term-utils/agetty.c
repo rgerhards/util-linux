@@ -2061,7 +2061,8 @@ static void __attribute__ ((__noreturn__)) usage(FILE *out)
  */
 #define	str2cpy(b,s1,s2)	strcat(strcpy(b,s1),s2)
 
-static void dolog(int priority, const char *fmt, va_list ap)
+static void __attribute__((format (printf, 2, 0)))
+dolog(int priority, const char *fmt, va_list ap)
 {
 #ifndef	USE_SYSLOG
 	int fd;
